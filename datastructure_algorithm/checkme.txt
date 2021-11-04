@@ -1,0 +1,10 @@
+This source maybe a good one for Data Structures
+https://pythongeeks.org/python-data-structures/
+
+Progression:
+    - Basic Data Structures:
+        + Built-in Strutures: List, Set, Tuple, Dictionary
+        + Built-in Functions: .....
+    - Advanced Data Structures:
+        + User-Defined Data Structures: Array, Stack, Queue, .........
+        ...........
