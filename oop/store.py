@@ -32,7 +32,7 @@ vandongvien4 = ThanhVien(4, 'Syng', 77, 198)
 vandongvien5 = ThanhVien(5, 'Geng', 100, 166)
 
 
-
+print(vandongvien1)
 
 list_vdv = [vandongvien1, vandongvien2, vandongvien3, vandongvien4, vandongvien5]
 tim = list_vdv[0]

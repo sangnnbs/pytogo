@@ -1,3 +1,6 @@
+import pickle
+
+
 class ThanhVien:
     
     # Bien Private
@@ -7,26 +10,11 @@ class ThanhVien:
     
     def __init__(self, id, hoten, cannang, chieucao):
         
-        self.__id = id
+        self.id = id
         self.__hoten = hoten
         self.__cannang = cannang
         self.__chieucao = chieucao
-        self.list_vdv = []
-
-    # Nhập Thông tin VĐV mới
-    def NhapThongTin(self):    
-        self.__id = int(input('Nhập ID: '))
-        self.__hoten = str(input('Nhập Họ Ten: '))
-        self.__cannang = int(input('Nhập cân nặng: '))
-        self.__chieucao = int(input('Nhập chiều cao: '))
-    
-    def ThemThongTin(self):
-        
-        self.list_vdv.append((self.__id, self.__hoten, self.__cannang, self.__chieucao))
-
-    
-    def GetThongTin(self):
-        return self.list_vdv
+ 
     
     # Lấy Họ Tên
     def GetHoTen(self):
@@ -42,6 +30,12 @@ class ThanhVien:
 
 
 vandongvien = ThanhVien(None, None, None, None )
+
+list_vdv = []
+
+# File lưu thông tin VDV
+file_vdv = "./vdv.txt"
+
 #print(vandongvien.GetHoTen())
 #vandongvien.NhapThongTin()
 #vandongvien.ThemThongTin()
@@ -61,19 +55,56 @@ vandongvien = ThanhVien(None, None, None, None )
 
 while True:
     khoidong = input('Hello, muốn làm gì: ')
+    # Them thanh vien
     if khoidong == 'them':
-        vandongvien.NhapThongTin()
-        vandongvien.ThemThongTin()
-        print(f'Thông tin vận động viên mới:{vandongvien.GetThongTin()} và {vandongvien.GetChieuCao()} ')
-    if khoidong == 'xem':
+        vandongvien = ThanhVien(    id = int(input('Nhập ID: ')), 
+                                    hoten = input('Nhập Họ Tên: '), 
+                                    cannang = int(input('Nhập cân nặng: ')), 
+                                    chieucao= int(input('Nhập chiều cao: '))
+                        )
+        list_vdv.append(vandongvien)
+
+        # Nạp vandongvien
+
+        with open('vdv.pkl', 'wb') as w:
+            pickle.dump(list_vdv, w)
+
+        print(f'Thông tin vận động viên mới:{list_vdv[len(list_vdv) - 1]} có Họ Tên: {vandongvien.GetHoTen()}, chiều cao = {vandongvien.GetChieuCao()} , cân nặng = {vandongvien.GetCanNang()}')
+
+        # Xuất vandongvien
+        with open('vdv.pkl', 'rb') as r:
+            new_list = pickle.load(r)
+        
+        print(new_list) # ---------> Hiện list_vdv đã thêm vandongvien
+
+    # Xem max chieu cao
+    if khoidong == 'xem max cao':
+
+        with open('vdv.pkl', 'rb') as r:
+            new_list = pickle.load(r)
+        hoten = ''
         a = 0
-        for i in vandongvien.GetThongTin():
-            if a < i[3]:
-                a = i[3]
-            
-        print(a)
+        for obj in new_list:
+            if a < obj.GetChieuCao():
+                a = obj.GetChieuCao()
+                hoten = obj.GetHoTen()
 
+        print(f'Vận động viên cao nhất với {a} có họ tên {hoten}')
+    
+    # Xem max can nang
+    if khoidong == 'xem max nang':
 
+        with open('vdv.pkl', 'rb') as r:
+            new_list = pickle.load(r)
+        hoten = ''
+        b = 0
+        for obj in new_list:
+            if b < obj.GetCanNang():
+                b = obj.GetCanNang()  
+                hoten = obj.GetHoTen()
+
+        print(f'Vận động viên cao nhất với {b} có họ tên {hoten}')
+        
     elif khoidong == 'exit':
         print("..........")
         break
