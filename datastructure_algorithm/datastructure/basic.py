@@ -8,3 +8,8 @@
 # Create list
 list = []       # Syntax
 list = list()   # Constructor
+
+# Nested Loops
+for i in list:
+    for j in range():
+        pass
