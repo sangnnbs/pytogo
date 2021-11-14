@@ -36,8 +36,6 @@ vandongvien = ThanhVien(None, None, None, None )
 
 list_vdv = []
 
-# File lưu thông tin VDV
-file_vdv = "./vdv.txt"
 
 #print(vandongvien.GetHoTen())
 #vandongvien.NhapThongTin()
@@ -69,16 +67,16 @@ while True:
 
         # Nạp vandongvien
 
-        with open('vdv.pkl', 'wb') as w:
+        with open('vdv.pkl', 'ab') as w:
             pickle.dump(list_vdv, w)
 
-        print(f'Thông tin vận động viên mới:{list_vdv[len(list_vdv) - 1]} có Họ Tên: {vandongvien.GetHoTen()}, chiều cao = {vandongvien.GetChieuCao()} , cân nặng = {vandongvien.GetCanNang()}')
+        print(f'Thông tin vận động viên mới:{list_vdv[len(list_vdv) - 1]} có ID: {vandongvien.GetID()} Họ Tên: {vandongvien.GetHoTen()}, chiều cao = {vandongvien.GetChieuCao()} , cân nặng = {vandongvien.GetCanNang()}')
 
         # Xuất vandongvien
         with open('vdv.pkl', 'rb') as r:
             new_list = pickle.load(r)
         
-        print(new_list) # ---------> Hiện list_vdv đã thêm vandongvien
+        print(new_list) # ---------> Hiện object đã thêm vào list
 
     # Xem max chieu cao
     if khoidong == 'xem max cao':
@@ -106,7 +104,7 @@ while True:
                 b = obj.GetCanNang()  
                 hoten = obj.GetHoTen()
 
-        print(f'Vận động viên nặng nhất với {b} có họ tên {hoten}')
+        print(f'Vận động viên nặng nhất với {b} có họ tên {hoten} có ID: {obj.GetID()}')
 
     # ----------AAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHH-------------
     if khoidong == 'tim id':
@@ -115,13 +113,13 @@ while True:
             new_list = pickle.load(r)
         
         hoten = ''
-        aidi = input('Nhập ID của vdv cần tìm: ')
+        c = input('Nhập ID của vdv cần tìm: ')
         for obj in new_list:
-            if aidi == obj.GetID():
-                aidi = obj.GetID()  
+            if c == obj.GetID():
+                c = obj.GetID()  
                 hoten = obj.GetHoTen()
 
-        print(f'Vận động viên với ID = {aidi} có họ tên {hoten}')
+        print(f'Vận động viên với ID = {c} có họ tên {hoten}')
 
     elif khoidong == 'exit':
         print("..........")
