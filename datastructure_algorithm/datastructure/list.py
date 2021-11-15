@@ -34,6 +34,8 @@ list1 + list2
 
 list2*3                 #Multiply list
 
+
+
 # Python Built-in Functions
 
 list.append('as')       #adds an element to the list at the end.
