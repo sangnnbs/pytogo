@@ -33,11 +33,11 @@ class ThanhVien:
     def GetCanNang(self):
         return self.__cannang
 
+    
+
 
 vandongvien = ThanhVien(None, None, None, None )
-
 list_vdv = []
-
 
 #print(vandongvien.GetHoTen())
 #vandongvien.NhapThongTin()
@@ -67,60 +67,52 @@ while True:
                         )
         list_vdv.append(vandongvien)
 
-        # Nạp vandongvien
-
-        with open('vdv.pkl', 'ab') as w:
-            pickle.dump(list_vdv, w)
+        pickle_out = open('vdv.pkl', 'wb')
+        pickle.dump(list_vdv, pickle_out)
+        pickle_out.close()
 
         print(f'Thông tin vận động viên mới:{list_vdv[len(list_vdv) - 1]} có ID: {vandongvien.GetID()} Họ Tên: {vandongvien.GetHoTen()}, chiều cao = {vandongvien.GetChieuCao()} , cân nặng = {vandongvien.GetCanNang()}')
-
-        # Xuất vandongvien
-        with open('vdv.pkl', 'rb') as r:
-            new_list = pickle.load(r)
-        
-        print(new_list) # ---------> Hiện object đã thêm vào list
 
     # Xem max chieu cao
     if khoidong == 'xem max cao':
 
-        with open('vdv.pkl', 'rb') as r:
-            new_list = pickle.load(r)
+        pickle_in = open('vdv.pkl', 'rb')
+        pickle_in = pickle.load(pickle_in)
+
         hoten = ''
         a = 0
-        for obj in new_list:
-            if a < obj.GetChieuCao():
-                a = obj.GetChieuCao()
-                hoten = obj.GetHoTen()
+    
+        
+        for i in pickle_in:
+            if a < i.GetChieuCao():
+                a = i.GetChieuCao()
+                hoten = i.GetHoTen()
 
+
+    
+        
         print(f'Vận động viên cao nhất với {a} có họ tên {hoten}')
     
     # Xem max can nang
     if khoidong == 'xem max nang':
-
-        with open('vdv.pkl', 'rb') as r:
-            new_list = pickle.load(r)
-        hoten = ''
-        b = 0
-        for obj in new_list:
-            if b < obj.GetCanNang():
-                b = obj.GetCanNang()  
-                hoten = obj.GetHoTen()
 
         print(f'Vận động viên nặng nhất với {b} có họ tên {hoten} có ID: {obj.GetID()}')
 
     # ----------AAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHH-------------
     if khoidong == 'tim id':
         
-        with open('vdv.pkl', 'rb') as r:
-            new_list = pickle.load(r)
-        
-        hoten = ''
-        c = input('Nhập ID của vdv cần tìm: ')
-        for obj in new_list:
-            if c == obj.GetID():
-                c = obj.GetID()  
-                hoten = obj.GetHoTen()
+        pickle_in = open('vdv.pkl', 'rb')
+        pickle_in = pickle.load(pickle_in)
 
+        hoten = 0
+        c = int(input('Nhap id can tim:' ))
+                
+        for i in pickle_in :
+            if c == i.GetID():
+               c = i.GetID()
+               hoten = i.GetChieuCao()
+               print('dang vo IF')
+            print(i.GetID(), i.GetHoTen(), c == i.GetID())  
         print(f'Vận động viên với ID = {c} có họ tên {hoten}')
 
     elif khoidong == 'exit':

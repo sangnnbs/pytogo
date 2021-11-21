@@ -61,7 +61,3 @@ website1 = Geeks("PythonGeeks")
 website2 = website1             # Here.  Object Aliasing 
 
 
-# Nested Loops
-for i in list:
-    for j in range():
-        pass
