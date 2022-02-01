@@ -5,6 +5,10 @@
 
 
 #--------------- Objects in Python -------------
+
+# Create Object
+object = [a, b, 's']
+
 # Create Class
 class ClassName:      # Syntax
     #---- Some constructors ----
@@ -62,5 +66,59 @@ class Geeks:
        self.name = name
 website1 = Geeks("PythonGeeks")
 website2 = website1             # Here.  Object Aliasing 
+
+
+#--------------- OOP features in Python -------------
+
+# Abstraction
+
+'''
+    Abstract Class is the Blueprint that any Child Classes MUST BE built from Abstract class's structure
+    The purpose is to prevent creating 
+
+'''
+class abstractClass:
+    def __init__(self) -> None:
+        pass
+    
+    def somefunc(self):
+        pass
+
+class Child(abstractClass):
+    '''
+    Must have 
+        def _init_
+        
+        def somefunc
+    
+    '''
+        
+
+# Inheritance
+
+class Parent:
+    def __init__(self) -> None:
+        pass
+    
+    def __str__(self) -> str:
+        return 'This is Parent Class'
+    
+    def someFunc(self):
+        pass
+    
+class Child(Parent):
+    def someFunc(self):
+        pass
+
+# Polymorphism
+'''
+Polymorphism means the same function name (but different signatures) being used for different types
+
+'''
+class Child2(Parent):
+    def someFunc(self):
+        pass
+        
+# Encapsulation
 
 
