@@ -1,17 +1,13 @@
 <script>
-	import Box from "./components/Box.svelte";
-	import Contact from "./components/Contact.svelte";
-	import Bio from "./components/Bio.svelte";
-	import Info from "./components/Info.svelte";
+import Index from "./components/index.svelte";
+
+
+Index
+
 </script>
+<Index></Index>
 
-<div>
-	<Bio/>
-	<Info/>
-	<Contact/>
 
-</div>
-
-<style>		
+<style>
 
 </style>
